@@ -16,30 +16,24 @@ import java.net.UnknownHostException;
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class App {
 
-    private static Logger log = LoggerFactory.getLogger(App.class);
+    private static final Logger log = LoggerFactory.getLogger(App.class);
 
     public static void main(String[] args) throws UnknownHostException {
         ConfigurableApplicationContext applicationContext = SpringApplication.run(App.class, args);
         ConfigurableEnvironment environment = applicationContext.getEnvironment();
-        String PORT = environment.getProperty("server.port");
-        String HOST = InetAddress.getLocalHost().getHostAddress();
+        String port = environment.getProperty("server.port");
+        String host = InetAddress.getLocalHost().getHostAddress();
         log.info("\n----------------------------------------------------------\n\t" +
                         "Bootstrap: '{}' is Success!\n\t" +
                         "Application: '{}' is running! Access URLs:\n\t" +
-                        "Local: \t\t{}://{}:{}\n\t" +
                         "Index: \t\t{}://{}:{}{}\n\t" +
-                        "External: \t{}://{}:{}\n\t" +
                         "Profile(s): dev\n----------------------------------------------------------\n",
                 // Bootstrap
                 "Modeler" + " Context",
                 // Application
-                "App Service",
-                // Local
-                "http", HOST, PORT,
+                "Modeler Service",
                 // Index
-                "http", HOST, PORT, "/index.html",
-                // External
-                "http", HOST, PORT
+                "http", host, port, "/index.html"
         );
     }
 }

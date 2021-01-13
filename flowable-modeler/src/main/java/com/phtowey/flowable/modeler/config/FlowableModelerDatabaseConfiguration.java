@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 /**
- * DatabaseConfiguration
+ * FlowableModelerDatabaseConfiguration
  *
  * @author photowey
  * @date 2021/01/13
@@ -28,21 +28,22 @@ public class FlowableModelerDatabaseConfiguration {
     private static final Logger log = LoggerFactory.getLogger(FlowableModelerDatabaseConfiguration.class);
 
     protected static final String LIQUIBASE_CHANGELOG_PREFIX = "ACT_DE_";
+    protected static final String LIQUIBASE_WORK_SPACE_CHANGE_LOG = "META-INF/liquibase/flowable-modeler-app-db-changelog.xml";
 
     @Bean
     public Liquibase liquibase(DataSource dataSource) {
-        log.info("--- start Configuring liquibase ---");
+        log.info("--- start configuring liquibase ---");
         Liquibase liquibase = null;
         try {
             DatabaseConnection connection = new JdbcConnection(dataSource.getConnection());
             Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(connection);
             database.setDatabaseChangeLogTableName(LIQUIBASE_CHANGELOG_PREFIX + database.getDatabaseChangeLogTableName());
             database.setDatabaseChangeLogLockTableName(LIQUIBASE_CHANGELOG_PREFIX + database.getDatabaseChangeLogLockTableName());
-            liquibase = new Liquibase("META-INF/liquibase/flowable-modeler-app-db-changelog.xml", new ClassLoaderResourceAccessor(), database);
+            liquibase = new Liquibase(LIQUIBASE_WORK_SPACE_CHANGE_LOG, new ClassLoaderResourceAccessor(), database);
             liquibase.update("flowable");
             return liquibase;
         } catch (Exception e) {
-            throw new InternalServerErrorException("Error creating liquibase database", e);
+            throw new InternalServerErrorException("--- >>> error: creating liquibase database <<< ---", e);
         } finally {
             this.closeDatabase(liquibase);
         }

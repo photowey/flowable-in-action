@@ -9,9 +9,10 @@ import java.util.Date;
  * @date 2020/12/11
  * @since 1.0.0
  */
-public class TimeFactory {
+public final class TimeFactory {
 
     private TimeFactory() {
+        // factory class; can't create
         throw new AssertionError("No " + this.getClass().getName() + " instances for you!");
     }
 

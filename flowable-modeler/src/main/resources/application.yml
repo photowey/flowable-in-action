@@ -8,7 +8,7 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.0.11:3307/flowable?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
+    url: jdbc:mysql://${local.mysql.host}:${local.mysql.port}/flowable?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&nullCatalogMeansCurrent=true
     username: root
     password: root
   main:
@@ -36,3 +36,8 @@ mybatis-plus:
   configuration-properties.prefix: ""
   configuration-properties.boolValue: TRUE
   configuration-properties.blobType: BLOB
+
+local:
+  mysql:
+    host: 192.168.2.123
+    port: 3307

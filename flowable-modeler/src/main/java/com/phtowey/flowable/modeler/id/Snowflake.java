@@ -1,7 +1,5 @@
 package com.phtowey.flowable.modeler.id;
 
-import com.phtowey.flowable.modeler.util.TextFormatUtil;
-
 /**
  * 来自CSDN
  * Twitter Snowflake
@@ -104,10 +102,10 @@ public class Snowflake {
      */
     public Snowflake(Long workerId, Long dataCenterId) {
         if (workerId > maxWorkerId || workerId < 0) {
-            throw new IllegalArgumentException(TextFormatUtil.format("worker Id can't be greater than {} or less than 0", maxWorkerId));
+            throw new IllegalArgumentException(String.format("worker Id can't be greater than %d or less than 0", maxWorkerId));
         }
         if (dataCenterId > maxDataCenterId || dataCenterId < 0) {
-            throw new IllegalArgumentException(TextFormatUtil.format("dataCenter Id can't be greater than {} or less than 0", maxDataCenterId));
+            throw new IllegalArgumentException(String.format("dataCenter Id can't be greater than %d or less than 0", maxDataCenterId));
         }
 
         this.workerId = workerId;
@@ -128,7 +126,7 @@ public class Snowflake {
         //如果当前时间小于上一次ID生成的时间戳,说明系统时钟回退过这个时候应当抛出异常
         if (timestamp < lastTimestamp) {
             throw new RuntimeException(
-                    TextFormatUtil.format("Clock moved backwards.  Refusing to generate id for {} milliseconds", (lastTimestamp - timestamp)));
+                    String.format("Clock moved backwards.  Refusing to generate id for %d milliseconds", (lastTimestamp - timestamp)));
         }
 
         //如果是同一时间生成的,则进行毫秒内序列

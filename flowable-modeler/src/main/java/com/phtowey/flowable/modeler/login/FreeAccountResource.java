@@ -19,6 +19,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/free")
 public class FreeAccountResource {
+
     @GetMapping(value = "/rest/account", produces = "application/json")
     public UserRepresentation getAccount() {
         UserRepresentation userRepresentation = this.populateUserRepresentation();

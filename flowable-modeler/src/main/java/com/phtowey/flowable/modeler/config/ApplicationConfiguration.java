@@ -11,7 +11,7 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 
 /**
- * FlowableActionConfiguration
+ * ApplicationConfiguration
  *
  * @author photowey
  * @date 2020/12/11
@@ -39,8 +39,8 @@ public class ApplicationConfiguration {
         dispatcherServletConfiguration.setParent(applicationContext);
         dispatcherServletConfiguration.register(ApiDispatcherServletConfiguration.class);
         DispatcherServlet servlet = new DispatcherServlet(dispatcherServletConfiguration);
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean(servlet, "/api/*");
-        registrationBean.setName("Flowable IDM App API Servlet");
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean(servlet, "/api/**");
+        registrationBean.setName("flowable-idm-app-api-servlet");
         registrationBean.setLoadOnStartup(1);
         registrationBean.setAsyncSupported(true);
         return registrationBean;
