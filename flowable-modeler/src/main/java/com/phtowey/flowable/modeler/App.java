@@ -24,12 +24,9 @@ public class App {
         String port = environment.getProperty("server.port");
         String host = InetAddress.getLocalHost().getHostAddress();
         log.info("\n----------------------------------------------------------\n\t" +
-                        "Bootstrap: '{}' is Success!\n\t" +
                         "Application: '{}' is running! Access URLs:\n\t" +
                         "Index: \t\t{}://{}:{}{}\n\t" +
                         "Profile(s): dev\n----------------------------------------------------------\n",
-                // Bootstrap
-                "Modeler" + " Context",
                 // Application
                 "Modeler Service",
                 // Index

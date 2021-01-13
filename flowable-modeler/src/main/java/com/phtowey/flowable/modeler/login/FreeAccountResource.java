@@ -40,10 +40,12 @@ public class FreeAccountResource {
 
     public UserRepresentation populateUserRepresentation() {
         UserRepresentation userRepresentation = new UserRepresentation();
-        userRepresentation.setFirstName("admin");
-        userRepresentation.setLastName("admin");
-        userRepresentation.setFullName("admin");
-        userRepresentation.setId("admin");
+        userRepresentation.setEmail("photowey.flowable@ext.com");
+        userRepresentation.setFirstName("shark");
+        userRepresentation.setLastName("chili");
+        userRepresentation.setFullName("shark chili");
+        userRepresentation.setId("202010249527792377");
+        userRepresentation.setTenantId("flowable-ext");
         return userRepresentation;
     }
 }
